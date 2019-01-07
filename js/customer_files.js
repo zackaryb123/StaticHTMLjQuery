@@ -69,11 +69,14 @@ function handleFiles() {
               <td>${file.amount}</td>
               <td>${file.dateMoved}</td>
               <td>
-                <div class="d-flex justify-content-between">
-                    <span class="small">Move File</span><input type="checkbox" aria-label="Checkbox for following text input">
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span class="small">Disable</span><input type="checkbox" aria-label="Checkbox for following text input">
+                <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                    </button>
+                    <div class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn">
+                        <a id="action1-${customerId}-${file.fileId}" class="dropdown-item sort-customer" href="#">Move File</a>
+                        <a id="action2-${customerId}-${file.fileId}" class="dropdown-item sort-numFiles" href="#">Disable</a>
+                    </div>
                 </div>
               </td>
             </tr>`)
@@ -86,7 +89,75 @@ function handleFiles() {
   });
 }
 
+function handleFileAction() {
+  $('#accordion').on('click','.file-actions',(event) => {
+    let target = $(event.target).attr('id').split('-');
+
+    let action = target[0];
+    let customerId = target[1];
+    let fileId = target[2];
+
+    if(action === 'action1'){
+      $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: `http://localhost:8090/files/status/${fileId}`,
+        data: JSON.stringify({
+          fileId: fileId,
+          status: 'Moved'
+        }),
+        success: (data) => {
+          console.log(data);
+          let email = {
+            email: data.customerEmail,
+            subject: 'Test Subject',
+            message: 'Test Message'
+          };
+          sendEmail(email);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+
+    if(action === 'action2') {
+      $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: `http://localhost:8090/files/status/${fileId}`,
+        data: JSON.stringify({
+          fileId: fileId,
+          status: 'Disabled'
+        }),
+        success: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+  })
+}
+
+function sendEmail(data) {
+  console.log(data);
+  $.ajax({
+    type: "POST",
+    url: "../mail/email.php",
+    data: data,
+    success: function(){
+      console.log('email sent!')
+    },
+    error: err => {
+      console.log(err);
+    }
+  });
+}
+
 $(document).ready(() => {
   manageCustomerFiles();
   handleFiles();
+  handleFileAction();
 });
