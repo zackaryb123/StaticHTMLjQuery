@@ -73,13 +73,32 @@ function handleFiles() {
                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Action
                     </button>
-                    <div class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn">
-                        <a id="action1-${customerId}-${file.fileId}" class="dropdown-item sort-customer" href="#">Move File</a>
-                        <a id="action2-${customerId}-${file.fileId}" class="dropdown-item sort-numFiles" href="#">Disable</a>
+                    <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
+                        <div class="">
+                            <button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm btn-secondary action1">Move File</button>
+                        </div>
+                        <div>
+                        </div class="">
+                            <button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button>
+                        </div>
                     </div>
                 </div>
               </td>
-            </tr>`)
+            </tr>`);
+
+          if( file.status === 'Moved'){
+            $(`#action1-${customerId}-${file.fileId}`).attr('disabled', true).val('Moved').html('Moved');
+            $(`#action2-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
+          }
+
+          if(file.status === 'Disabled') {
+            $(`#action1-${customerId}-${file.fileId}`).attr('disabled', true);
+            $(`#action2-${customerId}-${file.fileId}`).val('Disabled').html('Disabled').addClass('btn-danger');
+          }
+
+          if(file.status === 'Enabled') {
+            $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Enabled').addClass('btn-success');
+          }
         });
       },
       error: (err) => {
@@ -91,23 +110,31 @@ function handleFiles() {
 
 function handleFileAction() {
   $('#accordion').on('click','.file-actions',(event) => {
-    let target = $(event.target).attr('id').split('-');
+    let targetArr = $(event.target).attr('id').split('-');
 
-    let action = target[0];
-    let customerId = target[1];
-    let fileId = target[2];
+    let target = $(event.target);
+
+    let action = targetArr[0];
+    let customerId = targetArr[1];
+    let fileId = targetArr[2];
 
     if(action === 'action1'){
       $.ajax({
         type: 'PUT',
         contentType: 'application/json',
-        url: `http://localhost:8090/files/status/${fileId}`,
+        url: `http://localhost:8090/files/status/${customerId}/${fileId}`,
         data: JSON.stringify({
           fileId: fileId,
           status: 'Moved'
         }),
+        beforeSend: () => {
+          target.attr('disabled', true).val('Moving').html('Moving...');
+          $(`#action2-${customerId}-${fileId}`).attr({'disabled': true, 'hidden': true});
+        },
         success: (data) => {
           console.log(data);
+          target.attr('disabled', true).val('Moved').html('Moved');
+          $(`#action2-${customerId}-${fileId}`).attr({'disabled': true, 'hidden': true});
         },
         error: (err) => {
           console.log(err);
@@ -119,13 +146,21 @@ function handleFileAction() {
       $.ajax({
         type: 'PUT',
         contentType: 'application/json',
-        url: `http://localhost:8090/files/status/${fileId}`,
+        url: `http://localhost:8090/files/status/${customerId}/${fileId}`,
         data: JSON.stringify({
           fileId: fileId,
-          status: 'Disabled'
+          status: target.val() === 'Disabled'?'Enabled':'Disabled'
         }),
         success: (data) => {
           console.log(data);
+          if(data.status === 'Disabled') {
+            target.html('Disabled').val('Disabled').removeClass('btn-success').addClass('btn-danger');
+            $(`#action1-${customerId}-${fileId}`).attr('disabled', true);
+          }
+          if(data.status === 'Enabled'){
+            target.html('Enabled').val('Enabled').removeClass('btn-danger').addClass('btn-success');
+            $(`#action1-${customerId}-${fileId}`).attr('disabled', false);
+          }
         },
         error: (err) => {
           console.log(err);

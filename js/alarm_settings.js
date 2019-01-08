@@ -22,17 +22,17 @@ function handleAlarmCustomers(activeMenu, customers)
   $.each(customers, (index, customer) => {
     $('#accordionAlarm').append(
       `<tr>
-            <td class="card">
-              <div class="card-header" id="headingOne">
-                <h5 class="mb-0 d-flex justify-content-around">
-                  <span>${customer.customerId}</span>
-                  <span id="1${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateInitial.toUpperCase()}</span>
-                  <span id="5${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateFifth.toUpperCase()}</span>
-                  <span id="7${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateSeventh.toUpperCase()}</span>
-                </h5>
-              </div>
-            </td>
-          </tr>`)
+        <td class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0 d-flex justify-content-around">
+              <span>${customer.customerId}</span>
+              <span id="1${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateInitial.toUpperCase()}</span>
+              <span id="5${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateFifth.toUpperCase()}</span>
+              <span id="7${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateSeventh.toUpperCase()}</span>
+            </h5>
+          </div>
+        </td>
+      </tr>`)
   });
 }
 

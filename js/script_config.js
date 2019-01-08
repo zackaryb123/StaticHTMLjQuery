@@ -34,6 +34,7 @@ function handleUpdateScripts()
         success: (data) => {
           
           manageMessageScripts();
+          alert('Scripts Updated!');
         },
         error: (err) => {
           console.log(err);

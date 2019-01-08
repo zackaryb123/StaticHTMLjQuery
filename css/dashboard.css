@@ -1,11 +1,41 @@
+html {
+    background-color: #EFEEEF
+}
+
 body {
     font-size: .875rem;
 }
+
+a {
+    color: #0B5CA4
+}
+
+a:hover {
+    color: rgb(181, 197, 212);
+    text-decoration: none;
+}
+
 
 .feather {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
+}
+
+.btn {
+    background-color: #0B5CA4;
+    color: #EFEEEF
+}
+
+.btn:hover {
+    background-color: #0B5CA4;
+    color: rgb(181, 197, 212);
+}
+
+.btn-link,
+.btn-link:hover,
+.btn-link:focus {
+    text-decoration: none;
 }
 
 /*
@@ -49,7 +79,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-    color: #007bff;
+    color: #0B5CA4;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -67,6 +97,7 @@ body {
  */
 
 [role="main"] {
+    background-color: #EFEEEF;
     padding-top: 45px; /* Space for fixed navbar */
 }
 
