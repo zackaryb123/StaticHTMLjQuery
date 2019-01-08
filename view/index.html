@@ -138,7 +138,14 @@
             </div>
 
             <div id="ScriptConfigSection" class="" hidden>
-                <h1 class="h3"></h1>
+                <div id="textContainer" class="card" style="height: 400px; width: 85%">
+                    <h5 style="margin-left: 10px; margin-top: 5px">Text Script</h5>
+                    <textarea class="form-control" style="width: 90%; height: 150px; margin-left: 10px" id="textMessage"></textarea>
+
+                    <h5 style="margin-left: 10px; margin-top: 5px">Email Script</h5>
+                    <textarea class="form-control" style="width: 90%; height: 150px; margin-left: 10px" id="emailMessage"></textarea>
+                </div>
+                <button class="btn btn-success float-right" style="margin-right: 15%; margin-top: 10px" id="updateScriptsBtn">Update Scripts</button>
             </div>
 
             <div id="UpdateCustomerSection" class="" hidden>
@@ -174,5 +181,6 @@
 <script src="../js/navigation.js"></script>
 <script src="../js/sort.js"></script>
 <script src="../js/alarm_settings.js"></script>
+<script src="../js/script_config.js"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ function handleAlarmChange() {
 
 
 $('#SideNav5').click(() => {
-  console.log("clicked")
+  console.log("clicked");
   manageCustomerSettings();
   handleAlarmChange();
 });

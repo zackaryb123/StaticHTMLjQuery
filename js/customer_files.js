@@ -108,12 +108,6 @@ function handleFileAction() {
         }),
         success: (data) => {
           console.log(data);
-          let email = {
-            email: data.customerEmail,
-            subject: 'Test Subject',
-            message: 'Test Message'
-          };
-          sendEmail(email);
         },
         error: (err) => {
           console.log(err);
@@ -139,21 +133,6 @@ function handleFileAction() {
       })
     }
   })
-}
-
-function sendEmail(data) {
-  console.log(data);
-  $.ajax({
-    type: "POST",
-    url: "../mail/email.php",
-    data: data,
-    success: function(){
-      console.log('email sent!')
-    },
-    error: err => {
-      console.log(err);
-    }
-  });
 }
 
 $(document).ready(() => {

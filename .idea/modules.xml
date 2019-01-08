@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gsa_wireframe.iml" filepath="$PROJECT_DIR$/.idea/gsa_wireframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cathibot.iml" filepath="$PROJECT_DIR$/.idea/cathibot.iml" />
     </modules>
   </component>
 </project>
