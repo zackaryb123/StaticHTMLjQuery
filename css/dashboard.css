@@ -27,7 +27,7 @@ a:hover {
     color: #EFEEEF
 }
 
-.btn:hover {
+.btn-link:hover {
     background-color: #0B5CA4;
     color: rgb(181, 197, 212);
 }

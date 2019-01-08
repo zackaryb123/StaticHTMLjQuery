@@ -70,12 +70,12 @@ function handleFiles() {
               <td>${file.dateMoved}</td>
               <td>
                 <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Action
                     </button>
                     <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
                         <div class="">
-                            <button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm btn-secondary action1">Move File</button>
+                            <button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button>
                         </div>
                         <div>
                         </div class="">
@@ -92,12 +92,13 @@ function handleFiles() {
           }
 
           if(file.status === 'Disabled') {
-            $(`#action1-${customerId}-${file.fileId}`).attr('disabled', true);
-            $(`#action2-${customerId}-${file.fileId}`).val('Disabled').html('Disabled').addClass('btn-danger');
+            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
+            $(`#action2-${customerId}-${file.fileId}`).val('Disabled').html('Enable').addClass('btn-success');
           }
 
           if(file.status === 'Enabled') {
-            $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Enabled').addClass('btn-success');
+            $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Disable').addClass('btn-danger');
+            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': false, 'hidden': false});
           }
         });
       },
@@ -154,12 +155,12 @@ function handleFileAction() {
         success: (data) => {
           console.log(data);
           if(data.status === 'Disabled') {
-            target.html('Disabled').val('Disabled').removeClass('btn-success').addClass('btn-danger');
-            $(`#action1-${customerId}-${fileId}`).attr('disabled', true);
+            target.html('Enable').val('Disabled').removeClass('btn-danger').addClass('btn-success');
+            $(`#action1-${customerId}-${fileId}`).attr({'disabled': true, 'hidden': true});
           }
           if(data.status === 'Enabled'){
-            target.html('Enabled').val('Enabled').removeClass('btn-danger').addClass('btn-success');
-            $(`#action1-${customerId}-${fileId}`).attr('disabled', false);
+            target.html('Disable').val('Enabled').addClass('btn-danger').removeClass('btn-success');
+            $(`#action1-${customerId}-${fileId}`).attr({'disabled': false, 'hidden': false});
           }
         },
         error: (err) => {
