@@ -32,6 +32,7 @@ function updateDirectory() {
 }
 
 function handleCustomers(activeMenu, customers) {
+  $('#accordion').html('');
   $.each(customers, (index, customer) => {
     $('#accordion').append(
       `<tr>
@@ -48,11 +49,7 @@ function handleCustomers(activeMenu, customers) {
             <table class="table table-striped table-sm">
               <thead>
               <tr>
-                <th><a href="#" class="sort-dateReceived">Date Received</a></th>
-                <th><a href="#" class="sort-alertSent">Alert Sent</a></th>
-                <th><a href="#" class="sort-noRecords"># Records</a></th>
-                <th><a href="#" class="sort-amount">Amount</a></th>
-                <th><a href="#" class="sort-dateMoved">Date Moved</a></th>
+                <th><a href="#" class="sort-dateReceived">File</a></th>
                 <th>Action</th>
               </tr>
               </thead>
@@ -69,6 +66,7 @@ function handleCustomers(activeMenu, customers) {
 function handleFiles() {
   $('#accordion').on('click', '.customer-dropdown-js', () => {
     let customerId = $(event.target).attr('id');
+    console.log(customerId);
     $(`#files-js-${customerId}`).html('');
     console.log(customerId);
     return $.getJSON({
@@ -76,47 +74,16 @@ function handleFiles() {
       type: 'GET',
       success: (data) => {
         console.log(data);
-        data.files.forEach((file) => {
+        $.each(data.files, (index, file) => {
           $(`#files-js-${customerId}`).append(`
-            <tr>
-              <td>${file.dateReceived}</td>
-              <td>${file.alertSent}</td>
-              <td>${file.noRecords}</td>
-              <td>${file.amount}</td>
-              <td>${file.dateMoved}</td>
+             <tr>
+              <td>${file.fileName}</td>
               <td>
-                <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
-                    <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Action
-                    </button>
-                    <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
-                        <div class="">
-                            <button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button>
-                        </div>
-                        <div>
-                        </div class="">
-                            <button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button>
-                        </div>
-                    </div>
-                </div>
+                <button id="OpenFile-${file.fileId}" class="btn btn-link">Open File</button>
               </td>
-            </tr>`);
-
-          if( file.status === 'Moved'){
-            $(`#action1-${customerId}-${file.fileId}`).attr('disabled', true).val('Moved').html('Moved');
-            $(`#action2-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
-          }
-
-          if(file.status === 'Disabled') {
-            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
-            $(`#action2-${customerId}-${file.fileId}`).val('Disabled').html('Enable').addClass('btn-success');
-          }
-
-          if(file.status === 'Enabled') {
-            $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Disable').addClass('btn-danger');
-            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': false, 'hidden': false});
-          }
-        });
+            </tr>
+          `)
+        })
       },
       error: (err) => {
         console.log(err);
