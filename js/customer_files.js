@@ -15,6 +15,22 @@ function manageCustomerFiles() {
   }
 }
 
+function updateDirectory() {
+  $('#UpdateCustomers').click(() => {
+    $.getJSON({
+      url: `http://localhost:8090/customers/updateDirectory`,
+      type: 'GET',
+      success: (data) => {
+        console.log(data);
+        handleCustomers(null, data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  })
+}
+
 function handleCustomers(activeMenu, customers) {
   $.each(customers, (index, customer) => {
     $('#accordion').append(
@@ -172,6 +188,7 @@ function handleFileAction() {
 }
 
 $(document).ready(() => {
+  updateDirectory();
   manageCustomerFiles();
   handleFiles();
   handleFileAction();
