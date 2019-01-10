@@ -61,13 +61,13 @@ function handleAlarms() {
           $(`#alarm-js-${data.customerId}`).append(`
             <tr>
               <th>
-                <span id="1${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateInitial.toUpperCase()}</span>
+                <span id="1-${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateInitial.toUpperCase()}</span>
               </th>
               <th>
-              <span id="5${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateFifth.toUpperCase()}</span>
+              <span id="5-${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateFifth.toUpperCase()}</span>
               </th>
               <th>
-              <span id="7${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateSeventh.toUpperCase()}</span>
+              <span id="7-${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateSeventh.toUpperCase()}</span>
               </th>
             </tr>`)
       }
@@ -78,40 +78,43 @@ function handleAlarms() {
 function handleAlarmChange() {
   $('#accordionAlarm').on('click', '.alarmSetting' , () => {
     console.log("YN Click");
-    let clickId = $(event.target).attr('id');
-    console.log(clickId);
-    let spot = clickId.substring(0,1);
-    let alarmSpot = 'alarm' + spot;
-    let customerId = clickId.substring(1);
-    let YN = $(event.target).html();
-    console.log(YN);
-    if(YN === "Y")
-      YN = "N";
-    else
-      YN = "Y";
+    let targetArr = $(event.target).attr('id').split('-');
+    let alarm = targetArr[0];
+    let customerId = targetArr[1];
+    let value = $(event.target).html();
+    console.log(alarm);
+    console.log(customerId);
 
+    if(value === "Y") {
+      value = "N";
+      $(event.target).html('N');
+    }
+    else {
+      value = "Y";
+      $(event.target).html('Y');
+    }
 
     let newCust = {
       customerId:customerId
     };
 
-    switch(spot){
+    switch(alarm){
       case '1':
         newCust = {
           ...newCust,
-          alarmDateInitial: YN
+          alarmDateInitial: value
         };
         break;
       case '5':
         newCust = {
           ...newCust,
-          alarmDateFifth: YN
+          alarmDateFifth: value
         };
         break;
       case '7':
         newCust = {
           ...newCust,
-          alarmDateSeventh: YN
+          alarmDateSeventh: value
         };
         break;
 
@@ -120,13 +123,13 @@ function handleAlarmChange() {
     console.log(newCust);
 
     return $.ajax({
-      url: `http://localhost:8090/customers/${alarmSpot}/${customerId}`,
+      url: `http://localhost:8090/customers/alarm${alarm}/${customerId}`,
       type: 'PUT',
       data: JSON.stringify(newCust),
       contentType: 'application/json',
       success: (data) => {
         console.log(data);
-        manageCustomerSettings();
+        // manageCustomerSettings();
       },
       error: (err) => {
         console.log(err);
