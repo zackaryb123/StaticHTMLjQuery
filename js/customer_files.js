@@ -48,13 +48,18 @@ function handleCustomers(activeMenu, customers) {
           <div id="collapse${customer.customerId}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <table class="table table-striped table-sm">
               <thead>
-              <tr>
-                <th><a href="#" class="sort-dateReceived">File</a></th>
-                <th>Action</th>
-              </tr>
+                <tr>
+                  <th><a href="#" class="sort-fileName">Name</a></th>
+                  <th><a href="#" class="sort-dateReceived">Date Received</a></th>
+                  <th><a href="#" class="sort-alertSent">Alert Sent</a></th>
+                  <th><a href="#" class="sort-noRecords"># Records</a></th>
+                  <th><a href="#" class="sort-amount">Amount</a></th>
+                  <th><a href="#" class="sort-dateMoved">Date Moved</a></th>
+                  <th>Action</th>
+                </tr>
               </thead>
               <tbody id="files-js-${customer.customerId}">
-              
+
               </tbody>
             </table>
           </div>
@@ -74,23 +79,50 @@ function handleFiles() {
       type: 'GET',
       success: (data) => {
         console.log(data);
-        $.each(data.files, (index, file) => {
+        data.taxFiles.forEach((file, index) => {
           $(`#files-js-${customerId}`).append(`
-             <tr>
+            <tr>
               <td>${file.fileName}</td>
+              <td>${file.dateReceived}</td>
+              <td>${file.alertSent}</td>
+              <td>${file.noRecords}</td>
+              <td>${file.amount}</td>
+              <td>${file.dateMoved}</td>
               <td>
-                <button id="OpenFile-${file.fileId}" class="btn btn-link">Open File</button>
+              <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
+                  <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Action
+                  </button>
+                  <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
+                      <div><button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button></div>
+                      <div><button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button></div>
+                      <div><button style="width: 100%;" type="button" id="action3-${customerId}-${file.fileId}" class="btn btn-sm action3">Open File</button></div>
+                  </div>
+              </div>
               </td>
-            </tr>
-          `)
-        })
-      },
-      error: (err) => {
-        console.log(err);
+            </tr>`
+          );
+
+          if (file.status === 'Moved') {
+            $(`#action1-${customerId}-${file.fileId}`).attr('disabled', true).val('Moved').html('Moved');
+            $(`#action2-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
+          }
+
+          if (file.status === 'Disabled') {
+            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': true, 'hidden': true});
+            $(`#action2-${customerId}-${file.fileId}`).val('Disabled').html('Enable').addClass('btn-success');
+          }
+
+          if (file.status === 'Enabled') {
+            $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Disable').addClass('btn-danger');
+            $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': false, 'hidden': false});
+          }
+        });
       }
-    });
-  });
+    })
+  })
 }
+
 
 function handleFileAction() {
   $('#accordion').on('click','.file-actions',(event) => {

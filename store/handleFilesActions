@@ -45,3 +45,12 @@
       $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': false, 'hidden': false});
     }
   });
+
+
+
+               <tr>
+                <td>${file.fileName}</td>
+                <td>
+                  <button id="OpenFile-${file.fileId}" class="btn btn-link">Open File</button>
+                </td>
+              </tr>

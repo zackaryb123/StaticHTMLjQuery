@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ec2cbed-15f3-4063-b456-00d43ab9e32a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/store/HandleCustoemers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/handleFilesActions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/customer_files.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/customer_files.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/handleFilesActions" beforeDir="false" afterPath="$PROJECT_DIR$/store/handleFilesActions" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,26 +19,27 @@
     <session id="-1561095403">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="HandleCustoemers" value="1" />
+          <entry key="HandleCustoemers" value="2" />
           <entry key="PHP" value="1" />
           <entry key="bat" value="1" />
           <entry key="css" value="4" />
           <entry key="dat" value="1" />
-          <entry key="handleFilesActions" value="1" />
+          <entry key="handleFilesActions" value="5" />
           <entry key="html" value="8" />
           <entry key="js" value="18" />
           <entry key="json" value="2" />
@@ -53,26 +53,26 @@
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="18" />
           <entry key="PHP" value="6" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="PLAIN_TEXT" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="99" />
-          <entry key="handleFilesActions" value="16" />
+          <entry key="handleFilesActions" value="20" />
           <entry key="html" value="2525" />
-          <entry key="js" value="12040" />
+          <entry key="js" value="12219" />
           <entry key="php" value="1194" />
-          <entry key="txt" value="222" />
+          <entry key="txt" value="239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="99" />
-          <entry key="HTML" value="2607" />
-          <entry key="JavaScript" value="11958" />
+          <entry key="HTML" value="2617" />
+          <entry key="JavaScript" value="12127" />
           <entry key="PHP" value="1194" />
-          <entry key="PLAIN_TEXT" value="238" />
+          <entry key="PLAIN_TEXT" value="259" />
         </counts>
       </usages-collector>
     </session>
@@ -82,8 +82,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/customer_files.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+            <state relative-caret-position="105">
+              <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#1;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/store/handleFilesActions">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -91,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="-38">
               <caret line="135" column="40" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -128,11 +145,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>files</find>
       <find>drop</find>
       <find>so</find>
       <find>btn-</find>
       <find>sort</find>
+      <find>files</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,8 +177,8 @@
         <option value="$PROJECT_DIR$/js/alarm_settings.js" />
         <option value="$PROJECT_DIR$/css/dashboard.css" />
         <option value="$PROJECT_DIR$/view/index.html" />
-        <option value="$PROJECT_DIR$/store/handleFilesActions" />
         <option value="$PROJECT_DIR$/store/HandleCustoemers" />
+        <option value="$PROJECT_DIR$/store/handleFilesActions" />
         <option value="$PROJECT_DIR$/js/customer_files.js" />
       </list>
     </option>
@@ -173,10 +190,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="131" />
-    <option name="y" value="30" />
-    <option name="width" value="1755" />
-    <option name="height" value="968" />
+    <option name="x" value="477" />
+    <option name="y" value="7" />
+    <option name="width" value="1440" />
+    <option name="height" value="970" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -195,6 +212,11 @@
               <item name="cathibot" type="b2602c69:ProjectViewProjectNode" />
               <item name="gsa_wireframe" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cathibot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gsa_wireframe" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cathibot" type="b2602c69:ProjectViewProjectNode" />
@@ -220,6 +242,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zackb\WebstormProjects\gsa_wireframe\store" />
       <recent name="C:\Users\zackb\WebstormProjects\gsa_wireframe\js" />
       <recent name="C:\Users\zackb\WebstormProjects\gsa_wireframe\mail" />
       <recent name="C:\Users\zackb\WebstormProjects\gsa_wireframe\view" />
@@ -257,7 +280,8 @@
       <workItem from="1546900194918" duration="12839000" />
       <workItem from="1546973541457" duration="3204000" />
       <workItem from="1546980806572" duration="669000" />
-      <workItem from="1547046392998" duration="10581000" />
+      <workItem from="1547046392998" duration="11627000" />
+      <workItem from="1547126333358" duration="3433000" />
     </task>
     <task id="LOCAL-00001" summary="Merge Alarm Setting">
       <created>1546893078891</created>
@@ -294,17 +318,24 @@
       <option name="project" value="LOCAL" />
       <updated>1547054937721</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated Frontend">
+      <created>1547070253978</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1547070253978</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116301000" />
+    <option name="totallyTimeSpent" value="120780000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="105" y="24" width="1404" height="774" extended-state="0" />
+    <frame x="382" y="6" width="1152" height="776" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12948062" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1587444" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -316,7 +347,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3447738" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3437014" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -338,7 +369,8 @@
     <MESSAGE value="Theme color change and disable/Endable and Move File action functionality added" />
     <MESSAGE value="Btn style consistency added" />
     <MESSAGE value="Added update button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added update button" />
+    <MESSAGE value="Updated Frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Frontend" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/view/customer_files.html" />
@@ -387,16 +419,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/handleFilesActions">
+    <entry file="file://$PROJECT_DIR$/store/HandleCustoemers">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="150" selection-start-line="7" selection-start-column="11" selection-end-line="29" selection-end-column="18" />
+        <state>
+          <caret selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="-38">
           <caret line="135" column="40" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#a#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -419,17 +451,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/HandleCustoemers">
+    <entry file="file://$PROJECT_DIR$/store/handleFilesActions">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        <state relative-caret-position="232">
+          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/customer_files.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+        <state relative-caret-position="105">
+          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#td#6;n#tr#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
