@@ -56,9 +56,9 @@ function handleCustomers(activeMenu, customers) {
         <td class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button id="${customer.customerId}" class="customer-dropdown-js btn btn-link" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
+              <a id="${customer.customerId}" class="customer-dropdown-js" style="cursor: pointer" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
                   ${customer.customerId}
-              </button>
+              </a>
               <span style="float: right;">${customer.receivedFiles} Files</span>
             </h5>
           </div>
@@ -108,12 +108,13 @@ function handleFiles() {
               <td>${file.dateMoved === null ? 'Not Moved' : file.datemoved}</td>
               <td>
               <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
-                  <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownActionBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Action
                   </button>
-                  <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
-                      <div><button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button></div>
-                      <div><button value="${file.fileName}" style="width: 100%;" type="button" id="action3-${customerId}-${file.fileId}" class="btn btn-sm action3">Open File</button></div>
+                  <div class="dropdown-menu file-actions" aria-labelledby="dropdownActionBtn" style="text-align: center;">
+                      <a href="#" id="action1-${customerId}-${file.fileId}" class="dropdown-item action1">Move</a>
+                      <a href="#" id="action3-${customerId}-${file.fileId}" class="dropdown-item action3">Open</a>
+                      <a href="#" id="action2-${customerId}-${file.fileId}" class="dropdown-item action2">Remove</a>
                   </div>
               </div>
               </td>

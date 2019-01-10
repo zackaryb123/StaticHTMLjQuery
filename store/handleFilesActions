@@ -1,2 +1,1 @@
-                      <div><button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button></div>
-                      <div><button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button></div>
+<div><button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button></div>

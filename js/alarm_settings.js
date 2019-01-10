@@ -19,15 +19,15 @@ function handleCustomerAlarms(activeMenu, customers) {
   $.each(customers, (index, customer) => {
     $('#accordionAlarm').append(
       `<tr>
-        <td class="card">
+        <td class="card alarm-dropdown-js">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-              <button id="${customer.customerId}" class="alarm-dropdown-js btn btn-link" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
+              <a style="cursor: pointer" id="${customer.customerId}" class="" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
                   ${customer.customerId}
-              </button>
+              </a>
             </h5>
           </div>
-          <div id="collapse${customer.customerId}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div id="collapse${customer.customerId}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionAlarm">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
