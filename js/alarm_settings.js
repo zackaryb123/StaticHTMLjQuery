@@ -1,12 +1,11 @@
 function manageCustomerSettings() {
-
   return $.getJSON({
     url: 'http://localhost:8090/customers',
     type: 'GET',
     success: (data) => {
       console.log("alarm");
       console.log(data);
-      handleAlarmCustomers("SideNav5", data);
+      handleCustomerAlarms("SideNav5", data);
     },
     error: (err) => {
       console.log(err);
@@ -15,25 +14,65 @@ function manageCustomerSettings() {
 
 };
 
-function handleAlarmCustomers(activeMenu, customers)
-{
-  $('#accordionAlarm').html("");
-
+function handleCustomerAlarms(activeMenu, customers) {
+  $('#accordionAlarm').html('');
   $.each(customers, (index, customer) => {
     $('#accordionAlarm').append(
       `<tr>
         <td class="card">
           <div class="card-header" id="headingOne">
-            <h5 class="mb-0 d-flex justify-content-around">
-              <span>${customer.customerId}</span>
-              <span id="1${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateInitial.toUpperCase()}</span>
-              <span id="5${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateFifth.toUpperCase()}</span>
-              <span id="7${customer.customerId}" class="alarmSetting btn btn-link">${customer.alarmDateSeventh.toUpperCase()}</span>
+            <h5 class="mb-0">
+              <button id="${customer.customerId}" class="alarm-dropdown-js btn btn-link" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
+                  ${customer.customerId}
+              </button>
             </h5>
+          </div>
+          <div id="collapse${customer.customerId}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th><a href="#" class="">Initial Alert</a></th>
+                  <th><a href="#" class="">5th of Month Alert</a></th>
+                  <th><a href="#" class="">7th of Month Alert</a></th>
+                </tr>
+              </thead>
+              <tbody id="alarm-js-${customer.customerId}">
+
+              </tbody>
+            </table>
           </div>
         </td>
       </tr>`)
   });
+}
+
+function handleAlarms() {
+  $('#accordionAlarm').on('click', '.alarm-dropdown-js', () => {
+    let customerId = $(event.target).attr('id');
+    $(`#alarm-js-${customerId}`).html('');
+    console.log(customerId);
+    $(`#files-js-${customerId}`).html('');
+    console.log(customerId);
+    return $.getJSON({
+      url: `http://localhost:8090/customers/${customerId}`,
+      type: 'GET',
+      success: (data) => {
+        console.log(data);
+          $(`#alarm-js-${data.customerId}`).append(`
+            <tr>
+              <th>
+                <span id="1${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateInitial.toUpperCase()}</span>
+              </th>
+              <th>
+              <span id="5${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateFifth.toUpperCase()}</span>
+              </th>
+              <th>
+              <span id="7${data.customerId}" class="alarmSetting btn btn-link">${data.alarmDateSeventh.toUpperCase()}</span>
+              </th>
+            </tr>`)
+      }
+    })
+  })
 }
 
 function handleAlarmChange() {
@@ -108,3 +147,7 @@ $('#DropdownNav5').click(() => {
   manageCustomerSettings();
   handleAlarmChange();
 });
+
+$(document).ready(() => {
+  handleAlarms();
+})

@@ -15,6 +15,23 @@ function manageCustomerFiles() {
   }
 }
 
+function clickCustomerFiles() {
+  let activeMenu = $('.sidebar-js').on('click', '#SideNav1', () => {
+    return $.getJSON({
+      url: 'http://localhost:8090/customers',
+      type: 'GET',
+      success: (data) => {
+        console.log(data);
+        handleCustomers(activeMenu, data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  })
+}
+
+
 function updateDirectory() {
   $('#UpdateCustomers').click(() => {
     $.getJSON({
@@ -38,11 +55,11 @@ function handleCustomers(activeMenu, customers) {
       `<tr>
         <td class="card">
           <div class="card-header" id="headingOne">
-            <h5 class="mb-0 d-flex justify-content-around">
+            <h5 class="mb-0">
               <button id="${customer.customerId}" class="customer-dropdown-js btn btn-link" data-toggle="collapse" data-target="#collapse${customer.customerId}" aria-expanded="false" aria-controls="collapse${customer.customerId}">
                   ${customer.customerId}
               </button>
-              <span>${customer.receivedFiles}</span>
+              <span style="float: right;">${customer.receivedFiles} Files</span>
             </h5>
           </div>
           <div id="collapse${customer.customerId}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -79,15 +96,16 @@ function handleFiles() {
       type: 'GET',
       success: (data) => {
         console.log(data);
+        let formatDate = data.dateTransfered.split('T')[0];
         data.taxFiles.forEach((file, index) => {
           $(`#files-js-${customerId}`).append(`
             <tr>
               <td>${file.fileName}</td>
-              <td>${file.dateReceived}</td>
-              <td>${file.alertSent}</td>
+              <td>${formatDate}</td>
+              <td>${file.alertSent === null ? 'Not Sent' : file.alertSent}</td>
               <td>${file.noRecords}</td>
               <td>${file.amount}</td>
-              <td>${file.dateMoved}</td>
+              <td>${file.dateMoved === null ? 'Not Moved' : file.datemoved}</td>
               <td>
               <div class="dropdown" style="display: inline-block; margin-left: 1rem; margin-bottom: .5rem;">
                   <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownSortBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,8 +113,7 @@ function handleFiles() {
                   </button>
                   <div style="padding: 0!important;" class="dropdown-menu file-actions" aria-labelledby="dropdownSortBtn" style="text-align: center;">
                       <div><button style="width: 100%" type="button" id="action1-${customerId}-${file.fileId}" class="btn btn-sm action1">Move File</button></div>
-                      <div><button style="width: 100%" type="button" id="action2-${customerId}-${file.fileId}" class="btn btn-sm action2"></button></div>
-                      <div><button style="width: 100%;" type="button" id="action3-${customerId}-${file.fileId}" class="btn btn-sm action3">Open File</button></div>
+                      <div><button value="${file.fileName}" style="width: 100%;" type="button" id="action3-${customerId}-${file.fileId}" class="btn btn-sm action3">Open File</button></div>
                   </div>
               </div>
               </td>
@@ -117,7 +134,7 @@ function handleFiles() {
             $(`#action2-${customerId}-${file.fileId}`).val('Enabled').html('Disable').addClass('btn-danger');
             $(`#action1-${customerId}-${file.fileId}`).attr({'disabled': false, 'hidden': false});
           }
-        });
+        })
       }
     })
   })
@@ -158,6 +175,18 @@ function handleFileAction() {
       })
     }
 
+    if(action === 'action3') {
+      let targetArr = $(event.target).attr('id').split('-');
+
+      let action = targetArr[0];
+      let customerId = targetArr[1];
+      let fileId = targetArr[2];
+
+      let fileName = $(event.target).val();
+      console.log(customerId);
+      console.log(fileName);
+    }
+
     if(action === 'action2') {
       $.ajax({
         type: 'PUT',
@@ -191,4 +220,5 @@ $(document).ready(() => {
   manageCustomerFiles();
   handleFiles();
   handleFileAction();
+  clickCustomerFiles();
 });
